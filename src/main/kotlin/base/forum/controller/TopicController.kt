@@ -22,11 +22,11 @@ class GameController(private val repository: TopicRepository) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    fun post(@RequestBody game: Topic) = repository.save(game)
+    fun post(@RequestBody topic: Topic) = repository.save(topic)
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    fun put(@RequestBody game: Topic) = repository.save(game)
+    fun put(@RequestBody topic: Topic) = repository.save(topic)
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
