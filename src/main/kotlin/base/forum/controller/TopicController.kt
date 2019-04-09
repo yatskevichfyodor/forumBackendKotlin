@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/topic")
 @CrossOrigin
-class GameController(private val repository: TopicRepository) {
+class TopicController(private val repository: TopicRepository) {
 
     @GetMapping("/")
     fun getAll(): List<Topic> {
