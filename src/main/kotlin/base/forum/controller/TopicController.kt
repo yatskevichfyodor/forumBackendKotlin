@@ -2,13 +2,14 @@ package base.forum.controller
 
 import base.forum.model.Topic
 import base.forum.repository.TopicRepository
-import org.springframework.http.HttpStatus
+import base.forum.service.TopicService
+import org.springframework.http.HttpStatus.OK
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/topic")
 @CrossOrigin
-class TopicController(private val repository: TopicRepository) {
+class TopicController(private val service: TopicService, private val repository: TopicRepository) {
 
     @GetMapping("/")
     fun getAll(): List<Topic> {
@@ -21,14 +22,14 @@ class TopicController(private val repository: TopicRepository) {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
-    fun post(@RequestBody topic: Topic) = repository.save(topic)
+    @ResponseStatus(OK)
+    fun post(@RequestBody topic: Topic) = service.save(topic)
 
     @PutMapping
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(OK)
     fun put(@RequestBody topic: Topic) = repository.save(topic)
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(OK)
     fun delete(@PathVariable("id") id: Long) = repository.deleteById(id)
 }
