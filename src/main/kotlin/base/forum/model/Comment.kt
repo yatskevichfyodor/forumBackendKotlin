@@ -1,6 +1,5 @@
 package base.forum.model
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.*
 import javax.persistence.*
 import javax.persistence.TemporalType.TIMESTAMP
@@ -18,7 +17,6 @@ data class Comment(
         @Temporal(TIMESTAMP)
         val timestamp: Date = Date(),
 
-        @JsonIgnore
         @ManyToOne
         @JoinColumn(name = "topic_id", referencedColumnName = "id", nullable = false)
         val topic: Topic? = null
