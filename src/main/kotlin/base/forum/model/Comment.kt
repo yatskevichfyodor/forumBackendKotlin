@@ -1,19 +1,23 @@
 package base.forum.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.*
 import javax.persistence.*
 import javax.persistence.TemporalType.TIMESTAMP
-
 
 @Entity
 @Table(name = "comments")
 data class Comment(
         @Id
         @GeneratedValue
-        var id: Long = 0,
+        val id: Long = 0,
 
-        var content: String = "",
+        val content: String = "",
 
         @Temporal(TIMESTAMP)
-        var timestamp: Date = Date()
+        val timestamp: Date = Date(),
+
+        @ManyToOne
+        @get:JsonIgnore
+        val topic: Topic? = null
 )

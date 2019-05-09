@@ -1,10 +1,7 @@
 package base.forum.model
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.*
 import javax.persistence.*
-import javax.persistence.CascadeType.ALL
-import javax.persistence.CascadeType.PERSIST
 import javax.persistence.TemporalType.TIMESTAMP
 
 @Entity
@@ -12,14 +9,13 @@ import javax.persistence.TemporalType.TIMESTAMP
 data class Topic(
         @Id
         @GeneratedValue
-        var id: Long = 0,
+        val id: Long = 0,
 
-        var title: String = "",
+        val title: String = "",
 
         @Temporal(TIMESTAMP)
-        var timestamp: Date = Date(),
+        val timestamp: Date = Date(),
 
-        @OneToMany(cascade = [ALL])
-        @JoinColumn(name = "topic_id", referencedColumnName = "id")
-        var comments: List<Comment> = listOf()
+        @OneToMany(mappedBy = "topic")
+        val comments: List<Comment> = listOf()
 )
